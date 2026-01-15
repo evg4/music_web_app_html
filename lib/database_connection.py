@@ -14,6 +14,7 @@ class DatabaseConnection:
     TEST_DATABASE_NAME = "DEFAULT_MAKERS_PROJECT_TEST"
 
     def __init__(self, test_mode=False):
+        self.connection = None
         self.test_mode = test_mode
 
     # This method connects to PostgreSQL using the psycopg library. We connect
