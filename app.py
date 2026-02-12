@@ -1,13 +1,15 @@
 import os
 from flask import Flask, request, render_template
 from lib.database_connection import get_flask_database_connection
+from lib.album_routes import *
+from lib.artist_routes import *
 
 # Create a new Flask app
 app = Flask(__name__)
 
 # == Your Routes Here ==
-
-
+apply_album_routes(app)
+apply_artist_routes(app)
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
