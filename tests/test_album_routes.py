@@ -11,7 +11,7 @@ def test_get_albums(db_connection, web_client, page, test_web_address):
     a = page.locator("a")
     p = page.locator("p")
     expect(h1).to_have_text("Albums")
-    expect(a).to_have_text(['\nTitle: Title 1\nReleased: 1998\n', '\nTitle: Title 2\nReleased: 2007\n', '\nTitle: Another title\nReleased: 2023\n', '\n            Title: Final title\nReleased: 1956\n'])
+    expect(a).to_have_text(['\nTitle: Title 1\nReleased: 1998\n', '\nTitle: Title 2\nReleased: 2007\n', '\nTitle: Another title\nReleased: 2023\n', '\nTitle: Final title\nReleased: 1956\n', 'Home'])
     expect(p).to_have_text(['Title: Title 1 Released: 1998', 'Title: Title 2 Released: 2007', 'Title: Another title Released: 2023', 'Title: Final title Released: 1956'])
 
 def test_clicking_album_shows_page(db_connection, page, test_web_address):
