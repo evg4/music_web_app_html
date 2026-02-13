@@ -19,8 +19,9 @@ class ArtistRepository():
     
     def find_with_albums(self, artist_id):
         rows = self._connection.execute("SELECT artists.id AS artist_id, name, genre, albums.id AS album_id, title, release_year FROM artists JOIN albums ON artist_id = artists.id WHERE artist_id = %s", [artist_id])
-        artist = Artist(rows[0]['artist_id'], rows[0]['name'], rows[0]['genre'])
+        if rows:
+            artist = Artist(rows[0]['artist_id'], rows[0]['name'], rows[0]['genre'])
         albums = []
         for album in rows:
             albums.append(Album(album['album_id'], album['title'], album['release_year'], album['artist_id']))
-        return artist, albums
+        return artist if rows else None, albums
