@@ -1,5 +1,6 @@
 from lib.artist_repository import ArtistRepository
 from lib.artist import Artist
+from lib.album import Album
 
 def test_get_all_artists(db_connection):
     db_connection.seed('seeds/artists_table.sql')
@@ -20,3 +21,9 @@ def test_find_artist_id_1(db_connection):
     repository = ArtistRepository(db_connection)
     artist = repository.find(1)
     assert artist == Artist(1, 'Pixies', 'Rock')
+
+def test_find_with_albums(db_connection):
+    db_connection.seed('seeds/artists_table.sql')
+    repository = ArtistRepository(db_connection)
+    albums = repository.find_with_albums(3)[1]
+    assert albums == [Album(1, 'Title 1', 1998, 3), Album(4, 'Final title', 1956, 3)]

@@ -1,8 +1,30 @@
-def test_get_artists(db_connection, web_client):
+from playwright.sync_api import Page, expect
+
+def test_get_artists(db_connection, web_client, page):
     db_connection.seed('seeds/artists_table.sql')
     response = web_client.get('/artists')
     assert response.status_code == 200
     assert response.data.decode('utf-8') == "Pixies, ABBA, Taylor Swift, Nina Simone"
+    
+    #page.goto('/artists')
+    #h1 = page.locator('h1')
+    #expect(h1).to_have_text("Artists")
+
+def test_get_artist_by_valid_id(db_connection, web_client, page, test_web_address):
+    db_connection.seed('seeds/artists_table.sql')
+    response = web_client.get('/artists/1')
+    assert response.status_code == 200
+    page.goto(f'http://{test_web_address}/artists/1')
+    h1 = page.locator("h1")
+    genre = page.locator("p").nth(0)
+    h2 = page.locator("h2")
+    albums = page.locator("li")
+    expect(h1).to_have_text("Pixies")
+    expect(genre).to_have_text("Genre: Rock")
+    expect(h2).to_have_text("Albums:")
+    expect(albums).to_have_text(['Another title (2023)'])
+
+
 
 
 def test_post_artist_Wild_nothing(db_connection, web_client):

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{artist.name}}</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>{{artist.name}}</h1>
+        <p>Genre: {{artist.genre}}</p>
+        <h2>Albums:</h2>
+        <ul>
+        {% for album in albums %}
+        <li>{{album.title}} ({{album.release_year}})</li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>
