@@ -28,6 +28,13 @@ def test_find_album_id_1(db_connection):
     album1 = ar.find(1)
     assert album1 == Album(1, 'Title 1', 1998, 3)
 
+def test_find_album_with_artist_name(db_connection):
+    db_connection.seed('seeds/albums_table.sql')
+    ar = AlbumRepository(db_connection)
+    album1 = ar.find_with_artist_name(1)
+    assert album1[0] == Album(1, 'Title 1', 1998, 3)
+    assert album1[1] == 'Taylor Swift'
+
 '''
 def test_valid_data_with_valid_data(db_connection):
     ar = AlbumRepository(db_connection)

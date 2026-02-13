@@ -13,6 +13,10 @@ class AlbumRepository:
     def find(self, id):
         album = self._connection.execute('SELECT * FROM albums WHERE id = %s', [id])[0]
         return Album(album['id'], album['title'], album['release_year'], album['artist_id'])
+    def find_with_artist_name(self, id):
+        album = self._connection.execute('SELECT albums.id, title, release_year, artist_id, artists.name FROM albums JOIN artists ON albums.artist_id = artists.id WHERE albums.id = %s', [id])[0]
+        return Album(album['id'], album['title'], album['release_year'], album['artist_id']), album['name']
+        # this return line returns 2 things - an Album instance, and a string. They are returned in a tuple, which I can then access using index numbers. See album_routes file get_album_by_id for example.
     def create(self, album):
         if self.__valid_data(album):
             title = album['title']

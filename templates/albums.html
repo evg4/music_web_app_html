@@ -1,19 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>Albums</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
   </head>
   <body>
     <h1>Albums</h1>
-
     <div>
-        {% for album in albums %}
-        <p>
-            Title: {{ album.title }}<br>
-            Released: {{ album.release_year}}
-        </p>
-        {% endfor %}
+      {% for album in albums %}
+      <a href="/albums/{{album.id}}">
+        <p>Title: {{ album.title }} <br>Released: {{ album.release_year}}</p>
+        <hr>
+      </a>
+      {% endfor %}
     </div>
 
     <!-- ... -->
