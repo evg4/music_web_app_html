@@ -7,7 +7,9 @@ def apply_artist_routes(app):
     def get_artists():
         connection = get_flask_database_connection(app)
         repository = ArtistRepository(connection)
-        return ", ".join([artist.name for artist in repository.all()])
+        artists = repository.all()
+        return render_template('artists.html', artists=artists)
+        #return ", ".join([artist.name for artist in repository.all()])
     
     @app.route('/artists/<int:id>')
     def get_artist_by_id(id):

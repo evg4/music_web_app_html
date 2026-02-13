@@ -5,6 +5,7 @@
         <meta charset="utf-8">
     </head>
     <body>
+        {% if artist %}
         <h1>{{artist.name}}</h1>
         <p>Genre: {{artist.genre}}</p>
         <h2>Albums:</h2>
@@ -13,5 +14,9 @@
         <li>{{album.title}} ({{album.release_year}})</li>
         {% endfor %}
         </ul>
+        {% else %}
+        <p>Artist not found</p>
+        {% endif %}
+        <a href="/artists">Back to all artists</a>
     </body>
 </html>
