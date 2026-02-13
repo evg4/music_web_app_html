@@ -10,6 +10,10 @@ class AlbumRepository:
             item = Album(row['id'], row['title'], row['release_year'], row['artist_id'])
             albums.append(item)
         return albums
+    def find(self, id):
+        album_row = self._connection.execute('SELECT * FROM albums WHERE id = %s', [id])[0]
+        print(album_row)
+        return Album(album_row['id'], album_row['title'], album_row['release_year'], album_row['artist_id'])
     def create(self, album):
         if self.__valid_data(album):
             title = album['title']

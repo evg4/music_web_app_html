@@ -15,4 +15,8 @@ def test_create_artist(db_connection):
     result = repository.all()
     assert result == [Artist(1, 'Pixies', 'Rock'), Artist(2, 'ABBA', 'Pop'), Artist(3, 'Taylor Swift', 'Pop'), Artist(4, 'Nina Simone', 'Jazz'), Artist(5, 'Harry Styles', 'Pop')]
 
-
+def test_find_artist_id_1(db_connection):
+    db_connection.seed('seeds/artists_table.sql')
+    repository = ArtistRepository(db_connection)
+    artist = repository.find(1)
+    assert artist == Artist(1, 'Pixies', 'Rock')

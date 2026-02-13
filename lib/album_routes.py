@@ -1,7 +1,8 @@
 from lib.database_connection import get_flask_database_connection
 from lib.album_repository import AlbumRepository
+from lib.artist_repository import ArtistRepository
 from lib.album import Album
-from flask import request
+from flask import request, render_template
 
 
 def apply_album_routes(app):
@@ -9,8 +10,21 @@ def apply_album_routes(app):
     def get_albums(): 
         connection = get_flask_database_connection(app)
         repository = AlbumRepository(connection)
-        return ", ".join([str(album) for album in repository.all()])
+        albums = repository.all()
+        return render_template('albums.html', albums=albums)
+        #return ", ".join([str(album) for album in repository.all()])
     
+    @app.route('/albums/<int:id>')
+    def get_album_by_id(id):
+        connection = get_flask_database_connection(app)
+        album_repository = AlbumRepository(connection)
+        artist_repository = ArtistRepository(connection)
+        album = album_repository.find(id)
+        artist_id = album.artist_id
+        artist = artist_repository.find(artist_id)
+        artist_name = artist.name
+        return render_template('album.html', album=album, artist_name=artist_name)
+
     @app.route('/albums', methods=['POST'])
     def create_album():
         connection = get_flask_database_connection(app)
@@ -22,4 +36,3 @@ def apply_album_routes(app):
         artist_id = request.form['artist_id']
         album = {'title': title, 'release_year': release_year, 'artist_id': artist_id}
         return repository.create(album), 201
-        

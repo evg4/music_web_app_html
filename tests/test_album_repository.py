@@ -22,6 +22,12 @@ def test_create_album_with_partial_data(db_connection):
     assert ar.create(album) == 'Please provide a title, release year and artist ID.'
     assert ar.all() == [Album(1, 'Title 1', 1998, 3), Album(2, 'Title 2', 2007, 4), Album(3, 'Another title', 2023, 1), Album(4, 'Final title', 1956, 3)]
 
+def test_find_album_id_1(db_connection):
+    db_connection.seed('seeds/albums_table.sql')
+    ar = AlbumRepository(db_connection)
+    album1 = ar.find(1)
+    assert album1 == Album(1, 'Title 1', 1998, 3)
+
 '''
 def test_valid_data_with_valid_data(db_connection):
     ar = AlbumRepository(db_connection)
