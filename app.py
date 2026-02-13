@@ -11,6 +11,12 @@ app = Flask(__name__)
 apply_album_routes(app)
 apply_artist_routes(app)
 
+@app.route('/')
+def home_page():
+    connection = get_flask_database_connection(app)
+    return render_template('index.html')
+    
+
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
 # if started in test mode.
