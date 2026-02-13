@@ -20,10 +20,8 @@ def apply_album_routes(app):
         album_repository = AlbumRepository(connection)
         artist_repository = ArtistRepository(connection)
         album = album_repository.find(id)
-        artist_id = album.artist_id
-        artist = artist_repository.find(artist_id)
-        artist_name = artist.name
-        return render_template('album.html', album=album, artist_name=artist_name)
+        artist = artist_repository.find(album.artist_id)
+        return render_template('album.html', album=album, artist_name=artist.name)
 
     @app.route('/albums', methods=['POST'])
     def create_album():

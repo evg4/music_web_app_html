@@ -11,9 +11,8 @@ class AlbumRepository:
             albums.append(item)
         return albums
     def find(self, id):
-        album_row = self._connection.execute('SELECT * FROM albums WHERE id = %s', [id])[0]
-        print(album_row)
-        return Album(album_row['id'], album_row['title'], album_row['release_year'], album_row['artist_id'])
+        album = self._connection.execute('SELECT * FROM albums WHERE id = %s', [id])[0]
+        return Album(album['id'], album['title'], album['release_year'], album['artist_id'])
     def create(self, album):
         if self.__valid_data(album):
             title = album['title']
