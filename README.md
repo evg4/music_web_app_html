@@ -1,70 +1,52 @@
-# Flask HTML Web & Database Project Starter
+# Music web app
 
-This is a starter project for you to use to start your Flask HTML web & database
-projects.
+This is a basic Flask website which connects with a database to display related album and artist data. The purpose of this was to combine several new learnings, namely Flask, pytest, PostgreSQL database, and HTML templates. <br> It was cloned from the Makers repo as part of my coding bootcamp and contained some starter code; I took a TDD approach to add the tests and working code for the routes and repositories, as well as the HTML.
 
-It contains quite a lot of example code. You can use this to see how the various
-parts of the project work, or you can delete it and start from scratch.
+## How to use
 
-There are two videos to support:
+### Requirements
+- Python 3.10+
+- PostgreSQL
+- Playwright
 
-* [A demonstration of setting up the project](https://www.youtube.com/watch?v=YStsRfMVx44&t=0s)
-* [A walkthrough of the project codebase](https://www.youtube.com/watch?v=YStsRfMVx44&t=314s)
-
-## Setup
-
-```shell
+```bash
 # Clone the repository to your local machine
-; git clone git@github.com:makersacademy/web-applications-in-python-project-starter-html.git YOUR_PROJECT_NAME
-
-# Or, if you don't have SSH keys set up
-; git clone https://github.com/makersacademy/web-applications-in-python-project-starter-html.git YOUR_PROJECT_NAME
+git clone https://github.com/evg4/music_web_app_html.git
 
 # Enter the directory
-; cd YOUR_PROJECT_NAME
+cd music_web_app_html
 
-# Set up the virtual environment
-; python -m venv html-application-starter-venv
-
-# Activate the virtual environment
-; source html-application-starter-venv/bin/activate 
+# Set up and activate a virtual environment
+python -m venv venv
+source venv/bin/activate 
 
 # Install dependencies
-(html-application-starter-venv); pip install -r requirements.txt
-# Read below if you see an error with `python_full_version`
+pip install -r requirements.txt
 
-# Install the virtual browser we will use for testing
-; playwright install
-# If you encounter problems at this stage please contact your coach
+# Install Playwright
+playwright install
 
 # Create a test and development database
-(html-application-starter-venv); createdb YOUR_PROJECT_NAME
-(html-application-starter-venv); createdb YOUR_PROJECT_NAME_test
-
-# Open lib/database_connection.py and change the database name to YOUR_PROJECT_NAME
-(html-application-starter-venv); open lib/database_connection.py
+createdb music_html
+createdb music_html_test
 
 # Seed the development database
-(html-application-starter-venv); python seed_dev_database.py
+python seed_dev_database.py
 
-# Run the tests (with extra logging) - see below if you have any issues
-(html-application-starter-venv); pytest -sv
+# Run the tests
+pytest 
 
-# Run the app
-(html-application-starter-venv); python app.py
-# Now visit http://localhost:5001/emoji in your browser
+# Run the app 
+python app.py
+# Now visit http://localhost:5001/
 ```
 
-<br>
-<details>
-  <summary>I get a <code>ModuleNotFoundError: No module named 'psycopg'</code></summary>
-  <br>
-If, after activating your <code>venv</code> and installing dependencies, you see this error when running <code>pytest</code>, please deactivate and reactivate your <code>venv</code>. This should solve the problem - if not, contact your coach.
-</details>
-<br>
+## Areas for improvement
+I would love to add CSS to make this look more visually appealing but the focus of this project was getting to grips with Flask and connecting a database, which is why the appearance is basic.
 
-If you would like to remove the example code:
+## Credits
+Thanks to [Makers](https://github.com/makersacademy) for providing the starter code and guidance during the build.
 
-```shell
-; ./remove_example_code.sh
-```
+## Licence
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+ 
