@@ -2,7 +2,7 @@
 
 This is a basic Flask website which connects with a database to display related album and artist data. The purpose of this was to combine several new learnings, namely Flask, pytest, PostgreSQL database, and HTML templates. <br> It was cloned from the Makers repo as part of my coding bootcamp and contained some starter code; I took a TDD approach to add the tests and working code for the routes and repositories, as well as the HTML.
 
-## How to use
+## How to use (mac)
 
 ### Requirements
 - Python 3.10+
